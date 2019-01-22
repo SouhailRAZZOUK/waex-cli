@@ -1,0 +1,16 @@
+{
+  "name": "waex-cli",
+  "version": "0.0.1",
+  "description": "Watch and Exec",
+  "bin": {
+    "waex": "bin/waex"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Souhail RAZZOUK <souhail.razzouk@hotmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
+}
