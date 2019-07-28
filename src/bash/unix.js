@@ -1,15 +1,15 @@
 const { exec } = require("child_process");
 
-module.exports = (command) => (targetPath) => {
+module.exports = (bashFile) => (targetPath) => {
 
     const cwd = targetPath || process.cwd();
     const config = {
         cwd,
     };
 
-    console.log(`Executing Command: \`${command}\` On path: ${cwd}`);
+    console.log(`Executing bash: \`${bashFile}\` On path: ${cwd}`);
 
-    exec(command, config, (error, stdout, stderror) => {
+    exec(bashFile, config, (error, stdout, stderror) => {
         console.log("error", error);
         console.log("stdout", stdout);
         console.log("stderror", stderror);
