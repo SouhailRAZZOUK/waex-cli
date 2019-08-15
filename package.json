@@ -13,6 +13,7 @@
   "dependencies": {
     "iohook": "^0.5.1",
     "minimist": "^1.2.0",
-    "node-watch": "^0.6.0"
+    "node-watch": "^0.6.3",
+    "tree-kill": "^1.2.1"
   }
 }
