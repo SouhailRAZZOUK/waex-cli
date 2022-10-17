@@ -1,23 +1,24 @@
 const { spawn } = require('child_process');
 
-module.exports = (batchFile) => (targetPath) => {
+module.exports = (batchFile, args = []) => (targetPath) => {
 
   const cwd = targetPath || process.cwd();
   const config = {
     cwd,
   };
-  const bat = spawn(batchFile, ['/c', 'my.bat'], config);
+  const batchProcess = spawn(batchFile, args, config);
 
-  bat.stdout.on('data', (data) => {
+  batchProcess.stdout.on('data', (data) => {
     console.log(data.toString());
   });
 
-  bat.stderr.on('data', (data) => {
+  batchProcess.stderr.on('data', (data) => {
     console.log(data.toString());
   });
 
-  bat.on('exit', (code) => {
+  batchProcess.on('exit', (code) => {
     console.log(`Child exited with code ${code}`);
   });
-
+  
+  return batchProcess;
 }

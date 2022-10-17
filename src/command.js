@@ -9,7 +9,7 @@ module.exports = (command) => (targetPath) => {
 
     console.log(`Executing Command: \`${command}\` On path: ${cwd}`);
 
-    exec(command, config, (error, stdout, stderror) => {
+    return exec(command, config, (error, stdout, stderror) => {
         console.log("error", error);
         console.log("stdout", stdout);
         console.log("stderror", stderror);

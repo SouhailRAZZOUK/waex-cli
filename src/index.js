@@ -1,22 +1,14 @@
-const minimist = require('minimist');
+const minimist = require("minimist");
 const { switchcase } = require("./utils");
 const execCommand = require("./command");
 const execBash = require("./bash");
 const watch = require("./watch");
-const ioHook = require("iohook");
-
-const R = 19;
-
-ioHook.start();
-
-ioHook.registerShortcut([R], (keys) => {
-  console.log('Reloading ...', keys);
-});
+const JobManager = require("./JobManager");
 
 module.exports = () => {
   const args = minimist(process.argv.slice(2));
-  const { _, b, batch: bash, c, command, t, target, s, script } = args;
-  const targetCase = (c || command || b || bash);
+  const { _, b, bash: bash, c, command, t, target, s, script } = args;
+  const targetCase = c || command || b || bash;
   const targetPath = t || target;
   const casesMap = [
     {
@@ -29,13 +21,16 @@ module.exports = () => {
     },
     {
       case: "default",
-      callback: () => console.log("Command not found !!")
+      callback: () => {
+        console.log("Command not found !!");
+        return;
+      }
     }
   ];
 
   const job = switchcase(targetCase, casesMap);
-  job && watch(job, targetPath);
+  const jobManager = new JobManager(job);
+  jobManager.run(targetPath);
 
-  console.log(JSON.stringify(args, null, 2));
-  console.log('Welcome to the outside!')
-}
+  if (jobManager) console.log("Watching ...") || watch(jobManager, targetPath);
+};

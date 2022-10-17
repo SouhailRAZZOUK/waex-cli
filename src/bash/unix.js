@@ -9,7 +9,7 @@ module.exports = (bashFile) => (targetPath) => {
 
     console.log(`Executing bash: \`${bashFile}\` On path: ${cwd}`);
 
-    exec(bashFile, config, (error, stdout, stderror) => {
+    return exec(bashFile, config, (error, stdout, stderror) => {
         console.log("error", error);
         console.log("stdout", stdout);
         console.log("stderror", stderror);
