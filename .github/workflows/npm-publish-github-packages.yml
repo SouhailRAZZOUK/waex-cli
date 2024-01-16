@@ -28,6 +28,7 @@ jobs:
           ENV_TMP: ${{ secrets.ENV_TMP }}
       # - run: npm ci
       # - run: npm test
+      - run: cat tmp.xcconfig
 
   # publish-gpr:
   #   needs: build
