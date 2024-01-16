@@ -21,7 +21,8 @@ jobs:
         run: |
           echo "$ENV_TMP" > tmp.xcconfig
           echo "$ENV"
-          echo tmp.xcconfig
+          echo $ENV
+          type tmp.xcconfig
         shell: bash
         env:
           ENV_TMP: ${{ secrets.ENV_TMP }}
