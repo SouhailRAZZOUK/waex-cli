@@ -22,7 +22,7 @@ jobs:
           echo "$ENV_TMP" > tmp.xcconfig
           echo "$ENV"
           echo $ENV
-          type tmp.xcconfig
+          cat tmp.xcconfig
         shell: bash
         env:
           ENV_TMP: ${{ secrets.ENV_TMP }}
